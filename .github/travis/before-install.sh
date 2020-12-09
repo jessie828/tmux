@@ -1,5 +1,6 @@
 #!/bin/sh
 
+env
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 	sudo apt-get update -qq
 	sudo apt-get -y install bison \
