@@ -10,12 +10,9 @@ if [ "$RUNNER_OS" = "Linux" ]; then
                 libutempter-dev \
                 build-essential
 
-    echo Looking for BUILD
-    env
-    env | grep BUILD
     if [ "$BUILD" = "musl" -o "$BUILD" = "musl-static" ]; then
         sudo apt-get -y install musl-dev \
-                    musl-tools
+                    musl-tools linux-musl-dev
     fi
 fi
 
