@@ -23,6 +23,25 @@ jobs:
           #arch: [amd64, arm64]
           env: [static, all, musl, musl-static, ]
           os: [ubuntu-latest, macos-latest]
+          exclude:
+            - os: macos-latest
+              compiler: gcc
+              env: static
+            - os: macos-latest
+              compiler: clang
+              env: static
+            - os: macos-latest
+              compiler: gcc
+              env: musl
+            - os:  macos-latest
+              compiler: clang
+              env: musl
+            - os:  macos-latest
+              compiler: gcc
+              env: musl-static
+            - os:  macos-latest
+              compiler: clang
+              env: musl-static
 
     # The type of runner that the job will run on
     runs-on: ${{matrix.os }}
