@@ -21,27 +21,27 @@ jobs:
       matrix:
           compiler: [clang, gcc]
           #arch: [amd64, arm64]
-          env: [static, musl, musl-static, ]
+          build: [static, musl, musl-static, ]
           os: [ubuntu-latest, macos-latest]
           exclude:
             - os: macos-latest
               compiler: gcc
-              env: static
+              build: static
             - os: macos-latest
               compiler: clang
-              env: static
+              build: static
             - os: macos-latest
               compiler: gcc
-              env: musl
+              build: musl
             - os:  macos-latest
               compiler: clang
-              env: musl
+              build: musl
             - os:  macos-latest
               compiler: gcc
-              env: musl-static
+              build: musl-static
             - os:  macos-latest
               compiler: clang
-              env: musl-static
+              build: musl-static
 
     # The type of runner that the job will run on
     runs-on: ${{matrix.os }}
@@ -56,6 +56,6 @@ jobs:
 
       - name: script
         env:
-          BUILD: ${{matrix.env }}
+          BUILD: ${{matrix.build }}
           CC: ${{matrix.compiler }}
         run: sh .github/travis/build.sh
