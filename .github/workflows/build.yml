@@ -13,17 +13,17 @@ on:
 # Allows you to run this workflow manually from the Actions tab
 #workflow_dispatch:
 
-strategy:
-  matrix:
-      compiler: [clang, gcc]
-      #arch: [amd64, arm64]
-      env: [static, all, musl, musl-static, ]
-      os: [ubuntu-latest, macos-latest]
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+    strategy:
+      matrix:
+          compiler: [clang, gcc]
+          #arch: [amd64, arm64]
+          env: [static, all, musl, musl-static, ]
+          os: [ubuntu-latest, macos-latest]
+
     # The type of runner that the job will run on
     runs-on: ${{matrix.os }}
 
@@ -36,7 +36,7 @@ jobs:
         run: sh .github/travis/before-install.sh
 
       - name: script
-        env: 
+        env:
           BUILD: ${{matrix.env }}
           CC: ${{matrix.compiler }}
         run: sh .github/travis/build.sh
