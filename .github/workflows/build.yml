@@ -52,6 +52,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: before_install
+        env:
+          BUILD: ${{matrix.build }}
+          CC: ${{matrix.compiler }}
         run: sh .github/travis/before-install.sh
 
       - name: script
