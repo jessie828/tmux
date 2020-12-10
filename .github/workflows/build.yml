@@ -21,7 +21,7 @@ jobs:
       matrix:
           compiler: [clang, gcc]
           #arch: [amd64, arm64]
-          env: [static, all, musl, musl-static, ]
+          env: [static, musl, musl-static, ]
           os: [ubuntu-latest, macos-latest]
           exclude:
             - os: macos-latest
